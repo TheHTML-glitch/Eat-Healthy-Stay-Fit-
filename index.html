@@ -1,246 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Healthy Eating Tracker</title>
-  <style>
-    body {
-      background-color: #f0f8ff;
-      font-family: "Times New Roman", serif;
-      color: #333;
-      margin: 0;
-      padding: 0;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthy Eating Tracker</title>
+    <style>
+        body {
+            font-family: "Times New Roman", Times, serif;
+            background-color: #008000; /* Green background */
+            color: white;
+            text-align: center;
+        }
 
-    h1 {
-      font-size: 2.5rem;
-      text-align: center;
-      margin: 20px 0;
-      font-weight: bold;
-    }
+        h1 {
+            font-size: 3em;
+            color: white;
+        }
 
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      background-color: #ffffff;
-      border-radius: 10px;
-      padding: 20px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
+        .day-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px 0;
+        }
 
-    .day {
-      margin-bottom: 30px;
-    }
+        .day-container button {
+            font-size: 20px;
+            padding: 10px;
+            cursor: pointer;
+            margin: 10px;
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            border-radius: 5px;
+        }
 
-    .day h2 {
-      font-size: 1.5rem;
-      margin-bottom: 10px;
-    }
+        .day-container button:disabled {
+            background-color: #ccc;
+        }
 
-    .buttons {
-      display: flex;
-      gap: 10px;
-    }
+        .checkbox-container {
+            margin: 10px;
+            display: flex;
+            justify-content: center;
+        }
 
-    button {
-      font-size: 1rem;
-      font-weight: bold;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
+        .checkbox-container input {
+            margin-right: 10px;
+        }
 
-    .healthy-btn {
-      background-color: #28a745;
-      color: white;
-    }
+        .progress-bar {
+            width: 100%;
+            background-color: #ddd;
+            margin-top: 20px;
+            border-radius: 10px;
+        }
 
-    .unhealthy-btn {
-      background-color: #dc3545;
-      color: white;
-    }
+        .progress-fill {
+            height: 20px;
+            width: 0;
+            background-color: green;
+            border-radius: 10px;
+        }
 
-    .veg-options {
-      margin-top: 10px;
-      display: none;
-    }
+        .image-container {
+            margin-top: 20px;
+        }
 
-    .veg-btn {
-      background-color: #ffc107;
-      color: #333;
-    }
-
-    .non-veg-btn {
-      background-color: #007bff;
-      color: white;
-    }
-
-    .locked {
-      pointer-events: none;
-      opacity: 0.6;
-    }
-
-    .progress-container {
-      margin: 20px 0;
-    }
-
-    .progress-bar {
-      background-color: #e9ecef;
-      border-radius: 10px;
-      height: 20px;
-      width: 100%;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .progress-fill {
-      background-color: #28a745;
-      height: 100%;
-      width: 0%;
-      transition: width 0.4s ease;
-    }
-
-    .score {
-      font-size: 1.2rem;
-      margin-top: 10px;
-      text-align: center;
-    }
-
-    img {
-      margin-top: 10px;
-      width: 100px;
-      border-radius: 8px;
-    }
-  </style>
+        .side-image {
+            width: 300px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+    </style>
 </head>
 <body>
-  <h1>🌟 Healthy Eating Tracker 🌱</h1>
-  <div class="container">
-    <p style="text-align: center;">Track your daily eating habits and earn points. Avoid "Non-Veg" on Mondays for extra points!</p>
-    <div class="progress-container">
-      <h3>Progress</h3>
-      <div class="progress-bar">
+
+    <h1>Healthy Eating Tracker</h1>
+
+    <div class="day-container">
+        <h2>Monday</h2>
+        <button onclick="trackHealth('monday')">Mark Healthy</button>
+        <div class="checkbox-container">
+            <label><input type="checkbox" id="monday-veg" onchange="toggleVeg('monday')">Veg</label>
+            <label><input type="checkbox" id="monday-nonveg" onchange="toggleNonVeg('monday')">Non-Veg</label>
+        </div>
+    </div>
+
+    <div class="day-container">
+        <h2>Tuesday</h2>
+        <button onclick="trackHealth('tuesday')">Mark Healthy</button>
+        <div class="checkbox-container">
+            <label><input type="checkbox" id="tuesday-veg" onchange="toggleVeg('tuesday')">Veg</label>
+            <label><input type="checkbox" id="tuesday-nonveg" onchange="toggleNonVeg('tuesday')">Non-Veg</label>
+        </div>
+    </div>
+
+    <div class="day-container">
+        <h2>Wednesday</h2>
+        <button onclick="trackHealth('wednesday')">Mark Healthy</button>
+        <div class="checkbox-container">
+            <label><input type="checkbox" id="wednesday-veg" onchange="toggleVeg('wednesday')">Veg</label>
+            <label><input type="checkbox" id="wednesday-nonveg" onchange="toggleNonVeg('wednesday')">Non-Veg</label>
+        </div>
+    </div>
+
+    <div class="day-container">
+        <h2>Thursday</h2>
+        <button onclick="trackHealth('thursday')">Mark Healthy</button>
+        <div class="checkbox-container">
+            <label><input type="checkbox" id="thursday-veg" onchange="toggleVeg('thursday')">Veg</label>
+            <label><input type="checkbox" id="thursday-nonveg" onchange="toggleNonVeg('thursday')">Non-Veg</label>
+        </div>
+    </div>
+
+    <div class="day-container">
+        <h2>Friday</h2>
+        <button onclick="trackHealth('friday')">Mark Healthy</button>
+        <div class="checkbox-container">
+            <label><input type="checkbox" id="friday-veg" onchange="toggleVeg('friday')">Veg</label>
+            <label><input type="checkbox" id="friday-nonveg" onchange="toggleNonVeg('friday')">Non-Veg</label>
+        </div>
+    </div>
+
+    <div class="progress-bar">
         <div class="progress-fill" id="progress-fill"></div>
-      </div>
-      <p class="score" id="score-text">Progress: 0%</p>
     </div>
-    <!-- Monday -->
-    <div class="day" id="monday">
-      <h2>Monday</h2>
-      <div class="buttons">
-        <button class="healthy-btn" onclick="makeChoice('Monday', true)">✅ Healthy</button>
-        <button class="unhealthy-btn" onclick="makeChoice('Monday', false)">❌ Unhealthy</button>
-      </div>
-      <div class="veg-options" id="monday-options">
-        <p>Was your food:</p>
-        <button class="veg-btn" onclick="selectVeg('Monday', true)">✅ Veg</button>
-        <button class="non-veg-btn" onclick="selectVeg('Monday', false)">❌ Non-Veg</button>
-      </div>
-      <img id="monday-image" src="" alt="" />
+    <div id="score-text">Progress: 0%</div>
+
+    <div class="image-container">
+        <img src="https://hips.hearstapps.com/hmg-prod/images/heart-healthy-food-1580231690.jpg?crop=0.668xw:1.00xh;0.0849xw,0&resize=640:*" alt="Healthy Food" class="side-image">
     </div>
-    <!-- Tuesday -->
-    <div class="day" id="tuesday">
-      <h2>Tuesday</h2>
-      <div class="buttons">
-        <button class="healthy-btn" onclick="makeChoice('Tuesday', true)">✅ Healthy</button>
-        <button class="unhealthy-btn" onclick="makeChoice('Tuesday', false)">❌ Unhealthy</button>
-      </div>
-      <div class="veg-options" id="tuesday-options">
-        <p>Was your food:</p>
-        <button class="veg-btn" onclick="selectVeg('Tuesday', true)">✅ Veg</button>
-        <button class="non-veg-btn" onclick="selectVeg('Tuesday', false)">❌ Non-Veg</button>
-      </div>
-      <img id="tuesday-image" src="" alt="" />
-    </div>
-    <!-- Wednesday -->
-    <div class="day" id="wednesday">
-      <h2>Wednesday</h2>
-      <div class="buttons">
-        <button class="healthy-btn" onclick="makeChoice('Wednesday', true)">✅ Healthy</button>
-        <button class="unhealthy-btn" onclick="makeChoice('Wednesday', false)">❌ Unhealthy</button>
-      </div>
-      <div class="veg-options" id="wednesday-options">
-        <p>Was your food:</p>
-        <button class="veg-btn" onclick="selectVeg('Wednesday', true)">✅ Veg</button>
-        <button class="non-veg-btn" onclick="selectVeg('Wednesday', false)">❌ Non-Veg</button>
-      </div>
-      <img id="wednesday-image" src="" alt="" />
-    </div>
-    <!-- Thursday -->
-    <div class="day" id="thursday">
-      <h2>Thursday</h2>
-      <div class="buttons">
-        <button class="healthy-btn" onclick="makeChoice('Thursday', true)">✅ Healthy</button>
-        <button class="unhealthy-btn" onclick="makeChoice('Thursday', false)">❌ Unhealthy</button>
-      </div>
-      <div class="veg-options" id="thursday-options">
-        <p>Was your food:</p>
-        <button class="veg-btn" onclick="selectVeg('Thursday', true)">✅ Veg</button>
-        <button class="non-veg-btn" onclick="selectVeg('Thursday', false)">❌ Non-Veg</button>
-      </div>
-      <img id="thursday-image" src="" alt="" />
-    </div>
-    <!-- Friday -->
-    <div class="day" id="friday">
-      <h2>Friday</h2>
-      <div class="buttons">
-        <button class="healthy-btn" onclick="makeChoice('Friday', true)">✅ Healthy</button>
-        <button class="unhealthy-btn" onclick="makeChoice('Friday', false)">❌ Unhealthy</button>
-      </div>
-      <div class="veg-options" id="friday-options">
-        <p>Was your food:</p>
-        <button class="veg-btn" onclick="selectVeg('Friday', true)">✅ Veg</button>
-        <button class="non-veg-btn" onclick="selectVeg('Friday', false)">❌ Non-Veg</button>
-      </div>
-      <img id="friday-image" src="" alt="" />
-    </div>
-  </div>
 
-  <script>
-    let score = 0;
+    <script>
+        let progress = 0;
 
-    function makeChoice(day, isHealthy) {
-      const dayElement = document.getElementById(day.toLowerCase());
-      const options = document.getElementById(`${day.toLowerCase()}-options`);
-      const buttons = dayElement.querySelectorAll(".buttons button");
-      const image = document.getElementById(`${day.toLowerCase()}-image`);
+        function trackHealth(day) {
+            const veg = document.getElementById(`${day}-veg`).checked;
+            const nonVeg = document.getElementById(`${day}-nonveg`).checked;
 
-      // Lock Healthy/Unhealthy buttons
-      buttons.forEach((button) => button.classList.add("locked"));
+            if (day === "monday" && nonVeg) {
+                alert("Meatless Monday is required! No meat allowed on Monday.");
+                return;
+            }
 
-      // Show Veg/Non-Veg options
-      options.style.display = "block";
+            if (veg || nonVeg) {
+                progress += 20; // 20% for each healthy choice
+            } else {
+                progress -= 10; // Deduct 10% if no choice is made
+            }
 
-      // Update score
-      if (isHealthy) {
-        score += 10;
-        image.src = "https://via.placeholder.com/100?text=Healthy";
-        image.alt = "Healthy Eating";
-      } else {
-        score -= 5;
-        image.src = "https://via.placeholder.com/100?text=Unhealthy";
-        image.alt = "Unhealthy Eating";
-      }
+            if (progress > 100) progress = 100;
+            if (progress < 0) progress = 0;
 
-      updateProgress();
-    }
+            document.getElementById("progress-fill").style.width = `${progress}%`;
+            document.getElementById("score-text").textContent = `Progress: ${progress}%`;
+        }
 
-    function selectVeg(day, isVeg) {
-      if (day === "Monday" && !isVeg) {
-        score -= 10; // Penalize for Non-Veg on Mondays
-      }
+        function toggleVeg(day) {
+            document.getElementById(`${day}-nonveg`).checked = false; // Cannot select both
+        }
 
-      // Lock Veg/Non-Veg buttons
-      const options = document.getElementById(`${day.toLowerCase()}-options`);
-      const buttons = options.querySelectorAll("button");
-      buttons.forEach((button) => button.classList.add("locked"));
+        function toggleNonVeg(day) {
+            document.getElementById(`${day}-veg`).checked = false; // Cannot select both
+        }
+    </script>
 
-      updateProgress();
-    }
-
-    function updateProgress() {
-      const progressFill = document.getElementById("progress-fill");
-      const scoreText = document.getElementById("score-text");
-      const progress = Math.max(0, Math.min(100, score)); // Clamp between 0
+</body>
+</html>
