@@ -7,13 +7,14 @@
     <style>
         body {
             font-family: 'Times New Roman', Times, serif;
-            background-color: #a7cd39;
+            background-image: url('https://assets.clevelandclinic.org/transform/9cbcc77b-93b7-472e-838d-ec0d5f2f9fbd/heart-healthy-foods-1279763992');
+            background-size: cover;
+            color: #fff;
             margin: 0;
             padding: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
-            color: #fff;
         }
         header {
             text-align: center;
@@ -41,9 +42,9 @@
             margin: 20px 0;
             display: flex;
             justify-content: center;
+            gap: 20px;
         }
         .button {
-            margin: 0 10px;
             padding: 10px 20px;
             font-size: 1.2em;
             background-color: #4caf50;
@@ -127,11 +128,11 @@
     <div class="container">
         <div class="content">
             <div class="buttons-container">
-                <button class="button" id="monday-button" onclick="updateProgress(10, 'monday')">🍎 Healthy Monday</button>
-                <button class="button" id="tuesday-button" onclick="updateProgress(10, 'tuesday')">🥦 Healthy Tuesday</button>
-                <button class="button" id="wednesday-button" onclick="updateProgress(10, 'wednesday')">🍓 Healthy Wednesday</button>
-                <button class="button" id="thursday-button" onclick="updateProgress(10, 'thursday')">🍊 Healthy Thursday</button>
-                <button class="button" id="friday-button" onclick="updateProgress(10, 'friday')">🥑 Healthy Friday</button>
+                <button class="button" id="monday-button" onclick="updateProgress(10, 'monday')" disabled>🍎 Healthy Monday</button>
+                <button class="button" id="tuesday-button" onclick="updateProgress(10, 'tuesday')" disabled>🥦 Healthy Tuesday</button>
+                <button class="button" id="wednesday-button" onclick="updateProgress(10, 'wednesday')" disabled>🍓 Healthy Wednesday</button>
+                <button class="button" id="thursday-button" onclick="updateProgress(10, 'thursday')" disabled>🍊 Healthy Thursday</button>
+                <button class="button" id="friday-button" onclick="updateProgress(10, 'friday')" disabled>🥑 Healthy Friday</button>
             </div>
 
             <div class="checkbox-container" id="veg-checkbox-container">
@@ -197,32 +198,42 @@
 
     <script>
         let points = 0;
+        let dayProgress = {
+            monday: false,
+            tuesday: false,
+            wednesday: false,
+            thursday: false,
+            friday: false
+        };
 
         // Function to handle the progress
         function updateProgress(pointsAdded, day) {
-            if (day === 'monday' && document.getElementById("nonveg-checkbox").checked) {
-                alert('Meat is not allowed on Monday (Meatless Monday)!');
-                return;
-            }
-            points += pointsAdded;
-            const progressBar = document.getElementById("progress-bar");
-            progressBar.style.width = `${Math.min(points, 100)}%`;
+            if (!dayProgress[day]) {
+                points += pointsAdded;
+                dayProgress[day] = true;
+                const progressBar = document.getElementById("progress-bar");
+                progressBar.style.width = `${Math.min(points, 100)}%`;
 
-            // Display Veg/Non-Veg options after clicking a button
-            if (day !== 'monday') {
+                // Disable the current button and enable the next day's button
+                document.getElementById(`${day}-button`).disabled = true;
+
+                const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'];
+                const currentDayIndex = days.indexOf(day);
+
+                if (currentDayIndex < 4) {
+                    document.getElementById(`${days[currentDayIndex + 1]}-button`).disabled = false;
+                }
+
+                // Display Veg/Non-Veg options after clicking a button
                 document.getElementById("veg-checkbox-container").style.display = "flex";
                 document.getElementById("nonveg-checkbox-container").style.display = "flex";
-            } else {
-                document.getElementById("veg-checkbox-container").style.display = "none";
-                document.getElementById("nonveg-checkbox-container").style.display = "none";
             }
         }
 
         // Update the progress based on veg/non-veg selection
         function updateVegStatus(isVeg) {
-            if (!isVeg && document.getElementById("monday-button").clicked) {
-                alert('Non-Veg is not allowed on Monday!');
-            }
+            document.getElementById("veg-checkbox-container").style.display = "none";
+            document.getElementById("nonveg-checkbox-container").style.display = "none";
         }
     </script>
 </body>
