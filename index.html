@@ -6,182 +6,159 @@
     <title>Healthy Eating Tracker</title>
     <style>
         body {
-            font-family: "Times New Roman", Times, serif;
-            background-color: #a7cd39; /* Updated background color */
-            color: white;
-            text-align: center;
-            padding-top: 40px;
-        }
-
-        h1 {
-            font-size: 3em;
-            color: white;
-            margin-bottom: 20px;
-        }
-
-        .progress-bar {
-            width: 100%;
-            background-color: #ddd;
-            border-radius: 10px;
-            margin-bottom: 20px;
-        }
-
-        .progress-fill {
-            height: 20px;
-            width: 0;
-            background-color: green;
-            border-radius: 10px;
-        }
-
-        #score-text {
-            font-size: 20px;
-            font-weight: bold;
-        }
-
-        .day-container {
+            font-family: 'Times New Roman', Times, serif;
+            background-color: #a7cd39;
+            margin: 0;
+            padding: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
+            color: #fff;
+        }
+        header {
+            text-align: center;
+            margin-top: 50px;
+        }
+        h1 {
+            font-size: 3em;
+        }
+        #progress {
+            width: 80%;
+            height: 30px;
+            margin-top: 20px;
+            background-color: #ddd;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        #progress-bar {
+            width: 0%;
+            height: 100%;
+            background-color: #4caf50;
+            border-radius: 15px;
+            transition: width 0.3s ease-in-out;
+        }
+        .buttons-container {
             margin: 20px 0;
-        }
-
-        .day-container button {
-            font-size: 20px;
-            padding: 15px;
-            cursor: pointer;
-            margin: 10px;
-            background-color: #4CAF50;
-            border: none;
-            color: white;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        .day-container button:hover {
-            background-color: #45a049;
-        }
-
-        .checkbox-container {
-            margin: 10px;
             display: flex;
             justify-content: center;
         }
-
-        .checkbox-container input {
-            margin-right: 10px;
+        .button {
+            margin: 0 10px;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            background-color: #4caf50;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
         }
-
+        .button:hover {
+            background-color: #45a049;
+        }
+        .checkbox-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .checkbox-container label {
+            margin: 5px;
+        }
+        .container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 80%;
+        }
+        .content {
+            width: 60%;
+            padding: 20px;
+        }
         .image-container {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 250px;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            width: 35%;
         }
-
+        .image-container img {
+            width: 100%;
+            border-radius: 10px;
+        }
         .emoji {
-            font-size: 30px;
+            font-size: 2em;
+            margin: 10px;
+        }
+        .scroll-section {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #fff;
+            color: #333;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 800px;
+        }
+        .scroll-section h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .scroll-section p {
+            font-size: 1.1em;
+            line-height: 1.6;
         }
     </style>
 </head>
 <body>
-
-    <h1>Healthy Eating Tracker 🍎🥑</h1>
-
-    <div class="progress-bar">
-        <div class="progress-fill" id="progress-fill"></div>
-    </div>
-    <div id="score-text">Progress: 0%</div>
-
-    <!-- Monday Section -->
-    <div class="day-container">
-        <h2>Monday 🌱</h2>
-        <button onclick="trackHealth('monday')">Mark Healthy ✅</button>
-        <div class="checkbox-container">
-            <label><input type="checkbox" id="monday-veg" onchange="toggleVeg('monday')">Veg 🍃</label>
-            <label><input type="checkbox" id="monday-nonveg" onchange="toggleNonVeg('monday')">Non-Veg 🍖</label>
+    <header>
+        <h1>Healthy Eating Tracker</h1>
+        <div id="progress">
+            <div id="progress-bar"></div>
         </div>
-    </div>
+    </header>
 
-    <!-- Tuesday Section -->
-    <div class="day-container">
-        <h2>Tuesday 🍊</h2>
-        <button onclick="trackHealth('tuesday')">Mark Healthy ✅</button>
-        <div class="checkbox-container">
-            <label><input type="checkbox" id="tuesday-veg" onchange="toggleVeg('tuesday')">Veg 🥦</label>
-            <label><input type="checkbox" id="tuesday-nonveg" onchange="toggleNonVeg('tuesday')">Non-Veg 🍗</label>
+    <div class="container">
+        <div class="content">
+            <div class="buttons-container">
+                <button class="button" id="monday-button" onclick="updateProgress(10, 'monday')">🍎 Healthy Monday</button>
+                <button class="button" id="tuesday-button" onclick="updateProgress(10, 'tuesday')">🥦 Healthy Tuesday</button>
+                <button class="button" id="wednesday-button" onclick="updateProgress(10, 'wednesday')">🍓 Healthy Wednesday</button>
+                <button class="button" id="thursday-button" onclick="updateProgress(10, 'thursday')">🍊 Healthy Thursday</button>
+                <button class="button" id="friday-button" onclick="updateProgress(10, 'friday')">🥑 Healthy Friday</button>
+            </div>
+
+            <div class="checkbox-container">
+                <label for="nonveg-checkbox">Non-Veg (for days except Monday)</label>
+                <input type="checkbox" id="nonveg-checkbox" onclick="toggleCheckbox('nonveg')">
+            </div>
+            
+            <div class="scroll-section">
+                <h2>Why Should We Eat Healthy Food?</h2>
+                <p>Healthy eating helps maintain a healthy weight, reduces the risk of chronic diseases like heart disease, diabetes, and cancer, and promotes overall health and well-being.</p>
+                <h2>Why Should We Not Eat Unhealthy Food?</h2>
+                <p>Unhealthy foods, especially those rich in sugars, fats, and processed ingredients, can lead to weight gain, increase the risk of chronic diseases, and impact your mental well-being.</p>
+            </div>
         </div>
-    </div>
 
-    <!-- Wednesday Section -->
-    <div class="day-container">
-        <h2>Wednesday 🍅</h2>
-        <button onclick="trackHealth('wednesday')">Mark Healthy ✅</button>
-        <div class="checkbox-container">
-            <label><input type="checkbox" id="wednesday-veg" onchange="toggleVeg('wednesday')">Veg 🥕</label>
-            <label><input type="checkbox" id="wednesday-nonveg" onchange="toggleNonVeg('wednesday')">Non-Veg 🍖</label>
+        <div class="image-container">
+            <img src="https://hips.hearstapps.com/hmg-prod/images/heart-healthy-food-1580231690.jpg?crop=0.668xw:1.00xh;0.0849xw,0&resize=640:*" alt="Healthy Eating">
         </div>
-    </div>
-
-    <!-- Thursday Section -->
-    <div class="day-container">
-        <h2>Thursday 🍎</h2>
-        <button onclick="trackHealth('thursday')">Mark Healthy ✅</button>
-        <div class="checkbox-container">
-            <label><input type="checkbox" id="thursday-veg" onchange="toggleVeg('thursday')">Veg 🍆</label>
-            <label><input type="checkbox" id="thursday-nonveg" onchange="toggleNonVeg('thursday')">Non-Veg 🥩</label>
-        </div>
-    </div>
-
-    <!-- Friday Section -->
-    <div class="day-container">
-        <h2>Friday 🍍</h2>
-        <button onclick="trackHealth('friday')">Mark Healthy ✅</button>
-        <div class="checkbox-container">
-            <label><input type="checkbox" id="friday-veg" onchange="toggleVeg('friday')">Veg 🌽</label>
-            <label><input type="checkbox" id="friday-nonveg" onchange="toggleNonVeg('friday')">Non-Veg 🍤</label>
-        </div>
-    </div>
-
-    <div class="image-container">
-        <img src="https://hips.hearstapps.com/hmg-prod/images/heart-healthy-food-1580231690.jpg?crop=0.668xw:1.00xh;0.0849xw,0&resize=640:*" alt="Healthy Food">
     </div>
 
     <script>
-        let progress = 0;
+        let points = 0;
 
-        function trackHealth(day) {
-            const veg = document.getElementById(`${day}-veg`).checked;
-            const nonVeg = document.getElementById(`${day}-nonveg`).checked;
-
-            if (day === "monday" && nonVeg) {
-                alert("Meatless Monday is required! No meat allowed on Monday.");
+        function updateProgress(pointsAdded, day) {
+            if (day === 'monday' && document.getElementById("nonveg-checkbox").checked) {
+                alert('Meat is not allowed on Monday (Meatless Monday)!');
                 return;
             }
 
-            if (veg || nonVeg) {
-                progress += 20; // 20% for each healthy choice
-            } else {
-                progress -= 10; // Deduct 10% if no choice is made
+            points += pointsAdded;
+            const progressBar = document.getElementById("progress-bar");
+            progressBar.style.width = `${Math.min(points, 100)}%`;
+        }
+
+        function toggleCheckbox(type) {
+            if (type === 'nonveg' && document.getElementById("nonveg-checkbox").checked) {
+                alert('Meat is not allowed on Monday (Meatless Monday)!');
             }
-
-            if (progress > 100) progress = 100;
-            if (progress < 0) progress = 0;
-
-            document.getElementById("progress-fill").style.width = `${progress}%`;
-            document.getElementById("score-text").textContent = `Progress: ${progress}%`;
-        }
-
-        function toggleVeg(day) {
-            document.getElementById(`${day}-nonveg`).checked = false; // Cannot select both
-        }
-
-        function toggleNonVeg(day) {
-            document.getElementById(`${day}-veg`).checked = false; // Cannot select both
         }
     </script>
-
 </body>
 </html>
