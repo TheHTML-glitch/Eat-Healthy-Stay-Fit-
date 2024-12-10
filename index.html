@@ -126,7 +126,7 @@
       </div>
       <p class="score" id="score-text">Progress: 0%</p>
     </div>
-    <!-- Days -->
+    <!-- Monday -->
     <div class="day" id="monday">
       <h2>Monday</h2>
       <div class="buttons">
@@ -140,6 +140,7 @@
       </div>
       <img id="monday-image" src="" alt="" />
     </div>
+    <!-- Tuesday -->
     <div class="day" id="tuesday">
       <h2>Tuesday</h2>
       <div class="buttons">
@@ -153,7 +154,48 @@
       </div>
       <img id="tuesday-image" src="" alt="" />
     </div>
-    <!-- Add Wednesday, Thursday, Friday similarly -->
+    <!-- Wednesday -->
+    <div class="day" id="wednesday">
+      <h2>Wednesday</h2>
+      <div class="buttons">
+        <button class="healthy-btn" onclick="makeChoice('Wednesday', true)">✅ Healthy</button>
+        <button class="unhealthy-btn" onclick="makeChoice('Wednesday', false)">❌ Unhealthy</button>
+      </div>
+      <div class="veg-options" id="wednesday-options">
+        <p>Was your food:</p>
+        <button class="veg-btn" onclick="selectVeg('Wednesday', true)">✅ Veg</button>
+        <button class="non-veg-btn" onclick="selectVeg('Wednesday', false)">❌ Non-Veg</button>
+      </div>
+      <img id="wednesday-image" src="" alt="" />
+    </div>
+    <!-- Thursday -->
+    <div class="day" id="thursday">
+      <h2>Thursday</h2>
+      <div class="buttons">
+        <button class="healthy-btn" onclick="makeChoice('Thursday', true)">✅ Healthy</button>
+        <button class="unhealthy-btn" onclick="makeChoice('Thursday', false)">❌ Unhealthy</button>
+      </div>
+      <div class="veg-options" id="thursday-options">
+        <p>Was your food:</p>
+        <button class="veg-btn" onclick="selectVeg('Thursday', true)">✅ Veg</button>
+        <button class="non-veg-btn" onclick="selectVeg('Thursday', false)">❌ Non-Veg</button>
+      </div>
+      <img id="thursday-image" src="" alt="" />
+    </div>
+    <!-- Friday -->
+    <div class="day" id="friday">
+      <h2>Friday</h2>
+      <div class="buttons">
+        <button class="healthy-btn" onclick="makeChoice('Friday', true)">✅ Healthy</button>
+        <button class="unhealthy-btn" onclick="makeChoice('Friday', false)">❌ Unhealthy</button>
+      </div>
+      <div class="veg-options" id="friday-options">
+        <p>Was your food:</p>
+        <button class="veg-btn" onclick="selectVeg('Friday', true)">✅ Veg</button>
+        <button class="non-veg-btn" onclick="selectVeg('Friday', false)">❌ Non-Veg</button>
+      </div>
+      <img id="friday-image" src="" alt="" />
+    </div>
   </div>
 
   <script>
@@ -201,12 +243,4 @@
     function updateProgress() {
       const progressFill = document.getElementById("progress-fill");
       const scoreText = document.getElementById("score-text");
-      const progress = Math.max(0, Math.min(100, score)); // Clamp between 0 and 100
-
-      progressFill.style.width = `${progress}%`;
-      scoreText.textContent = `Progress: ${progress}%`;
-    }
-  </script>
-</body>
-</html>
-
+      const progress = Math.max(0, Math.min(100, score)); // Clamp between 0
