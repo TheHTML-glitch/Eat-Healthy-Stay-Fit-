@@ -107,6 +107,12 @@
       margin-top: 10px;
       text-align: center;
     }
+
+    img {
+      margin-top: 10px;
+      width: 100px;
+      border-radius: 8px;
+    }
   </style>
 </head>
 <body>
@@ -132,6 +138,7 @@
         <button class="veg-btn" onclick="selectVeg('Monday', true)">✅ Veg</button>
         <button class="non-veg-btn" onclick="selectVeg('Monday', false)">❌ Non-Veg</button>
       </div>
+      <img id="monday-image" src="" alt="" />
     </div>
     <div class="day" id="tuesday">
       <h2>Tuesday</h2>
@@ -144,6 +151,7 @@
         <button class="veg-btn" onclick="selectVeg('Tuesday', true)">✅ Veg</button>
         <button class="non-veg-btn" onclick="selectVeg('Tuesday', false)">❌ Non-Veg</button>
       </div>
+      <img id="tuesday-image" src="" alt="" />
     </div>
     <!-- Add Wednesday, Thursday, Friday similarly -->
   </div>
@@ -154,17 +162,25 @@
     function makeChoice(day, isHealthy) {
       const dayElement = document.getElementById(day.toLowerCase());
       const options = document.getElementById(`${day.toLowerCase()}-options`);
-      const buttons = dayElement.querySelectorAll("button");
+      const buttons = dayElement.querySelectorAll(".buttons button");
+      const image = document.getElementById(`${day.toLowerCase()}-image`);
 
-      // Lock buttons
+      // Lock Healthy/Unhealthy buttons
       buttons.forEach((button) => button.classList.add("locked"));
 
       // Show Veg/Non-Veg options
       options.style.display = "block";
 
       // Update score
-      if (isHealthy) score += 10;
-      else score -= 5;
+      if (isHealthy) {
+        score += 10;
+        image.src = "https://via.placeholder.com/100?text=Healthy";
+        image.alt = "Healthy Eating";
+      } else {
+        score -= 5;
+        image.src = "https://via.placeholder.com/100?text=Unhealthy";
+        image.alt = "Unhealthy Eating";
+      }
 
       updateProgress();
     }
@@ -193,3 +209,4 @@
   </script>
 </body>
 </html>
+
