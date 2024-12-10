@@ -7,14 +7,35 @@
     <style>
         body {
             font-family: "Times New Roman", Times, serif;
-            background-color: #008000; /* Green background */
+            background-color: #a7cd39; /* Updated background color */
             color: white;
             text-align: center;
+            padding-top: 40px;
         }
 
         h1 {
             font-size: 3em;
             color: white;
+            margin-bottom: 20px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            background-color: #ddd;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .progress-fill {
+            height: 20px;
+            width: 0;
+            background-color: green;
+            border-radius: 10px;
+        }
+
+        #score-text {
+            font-size: 20px;
+            font-weight: bold;
         }
 
         .day-container {
@@ -26,17 +47,18 @@
 
         .day-container button {
             font-size: 20px;
-            padding: 10px;
+            padding: 15px;
             cursor: pointer;
             margin: 10px;
             background-color: #4CAF50;
             border: none;
             color: white;
             border-radius: 5px;
+            transition: background-color 0.3s;
         }
 
-        .day-container button:disabled {
-            background-color: #ccc;
+        .day-container button:hover {
+            background-color: #45a049;
         }
 
         .checkbox-container {
@@ -49,88 +71,82 @@
             margin-right: 10px;
         }
 
-        .progress-bar {
-            width: 100%;
-            background-color: #ddd;
-            margin-top: 20px;
-            border-radius: 10px;
-        }
-
-        .progress-fill {
-            height: 20px;
-            width: 0;
-            background-color: green;
-            border-radius: 10px;
-        }
-
         .image-container {
-            margin-top: 20px;
-        }
-
-        .side-image {
-            width: 300px;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 250px;
             height: auto;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .emoji {
+            font-size: 30px;
         }
     </style>
 </head>
 <body>
 
-    <h1>Healthy Eating Tracker</h1>
-
-    <div class="day-container">
-        <h2>Monday</h2>
-        <button onclick="trackHealth('monday')">Mark Healthy</button>
-        <div class="checkbox-container">
-            <label><input type="checkbox" id="monday-veg" onchange="toggleVeg('monday')">Veg</label>
-            <label><input type="checkbox" id="monday-nonveg" onchange="toggleNonVeg('monday')">Non-Veg</label>
-        </div>
-    </div>
-
-    <div class="day-container">
-        <h2>Tuesday</h2>
-        <button onclick="trackHealth('tuesday')">Mark Healthy</button>
-        <div class="checkbox-container">
-            <label><input type="checkbox" id="tuesday-veg" onchange="toggleVeg('tuesday')">Veg</label>
-            <label><input type="checkbox" id="tuesday-nonveg" onchange="toggleNonVeg('tuesday')">Non-Veg</label>
-        </div>
-    </div>
-
-    <div class="day-container">
-        <h2>Wednesday</h2>
-        <button onclick="trackHealth('wednesday')">Mark Healthy</button>
-        <div class="checkbox-container">
-            <label><input type="checkbox" id="wednesday-veg" onchange="toggleVeg('wednesday')">Veg</label>
-            <label><input type="checkbox" id="wednesday-nonveg" onchange="toggleNonVeg('wednesday')">Non-Veg</label>
-        </div>
-    </div>
-
-    <div class="day-container">
-        <h2>Thursday</h2>
-        <button onclick="trackHealth('thursday')">Mark Healthy</button>
-        <div class="checkbox-container">
-            <label><input type="checkbox" id="thursday-veg" onchange="toggleVeg('thursday')">Veg</label>
-            <label><input type="checkbox" id="thursday-nonveg" onchange="toggleNonVeg('thursday')">Non-Veg</label>
-        </div>
-    </div>
-
-    <div class="day-container">
-        <h2>Friday</h2>
-        <button onclick="trackHealth('friday')">Mark Healthy</button>
-        <div class="checkbox-container">
-            <label><input type="checkbox" id="friday-veg" onchange="toggleVeg('friday')">Veg</label>
-            <label><input type="checkbox" id="friday-nonveg" onchange="toggleNonVeg('friday')">Non-Veg</label>
-        </div>
-    </div>
+    <h1>Healthy Eating Tracker 🍎🥑</h1>
 
     <div class="progress-bar">
         <div class="progress-fill" id="progress-fill"></div>
     </div>
     <div id="score-text">Progress: 0%</div>
 
+    <!-- Monday Section -->
+    <div class="day-container">
+        <h2>Monday 🌱</h2>
+        <button onclick="trackHealth('monday')">Mark Healthy ✅</button>
+        <div class="checkbox-container">
+            <label><input type="checkbox" id="monday-veg" onchange="toggleVeg('monday')">Veg 🍃</label>
+            <label><input type="checkbox" id="monday-nonveg" onchange="toggleNonVeg('monday')">Non-Veg 🍖</label>
+        </div>
+    </div>
+
+    <!-- Tuesday Section -->
+    <div class="day-container">
+        <h2>Tuesday 🍊</h2>
+        <button onclick="trackHealth('tuesday')">Mark Healthy ✅</button>
+        <div class="checkbox-container">
+            <label><input type="checkbox" id="tuesday-veg" onchange="toggleVeg('tuesday')">Veg 🥦</label>
+            <label><input type="checkbox" id="tuesday-nonveg" onchange="toggleNonVeg('tuesday')">Non-Veg 🍗</label>
+        </div>
+    </div>
+
+    <!-- Wednesday Section -->
+    <div class="day-container">
+        <h2>Wednesday 🍅</h2>
+        <button onclick="trackHealth('wednesday')">Mark Healthy ✅</button>
+        <div class="checkbox-container">
+            <label><input type="checkbox" id="wednesday-veg" onchange="toggleVeg('wednesday')">Veg 🥕</label>
+            <label><input type="checkbox" id="wednesday-nonveg" onchange="toggleNonVeg('wednesday')">Non-Veg 🍖</label>
+        </div>
+    </div>
+
+    <!-- Thursday Section -->
+    <div class="day-container">
+        <h2>Thursday 🍎</h2>
+        <button onclick="trackHealth('thursday')">Mark Healthy ✅</button>
+        <div class="checkbox-container">
+            <label><input type="checkbox" id="thursday-veg" onchange="toggleVeg('thursday')">Veg 🍆</label>
+            <label><input type="checkbox" id="thursday-nonveg" onchange="toggleNonVeg('thursday')">Non-Veg 🥩</label>
+        </div>
+    </div>
+
+    <!-- Friday Section -->
+    <div class="day-container">
+        <h2>Friday 🍍</h2>
+        <button onclick="trackHealth('friday')">Mark Healthy ✅</button>
+        <div class="checkbox-container">
+            <label><input type="checkbox" id="friday-veg" onchange="toggleVeg('friday')">Veg 🌽</label>
+            <label><input type="checkbox" id="friday-nonveg" onchange="toggleNonVeg('friday')">Non-Veg 🍤</label>
+        </div>
+    </div>
+
     <div class="image-container">
-        <img src="https://hips.hearstapps.com/hmg-prod/images/heart-healthy-food-1580231690.jpg?crop=0.668xw:1.00xh;0.0849xw,0&resize=640:*" alt="Healthy Food" class="side-image">
+        <img src="https://hips.hearstapps.com/hmg-prod/images/heart-healthy-food-1580231690.jpg?crop=0.668xw:1.00xh;0.0849xw,0&resize=640:*" alt="Healthy Food">
     </div>
 
     <script>
