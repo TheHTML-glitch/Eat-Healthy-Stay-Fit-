@@ -56,7 +56,7 @@
             background-color: #45a049;
         }
         .checkbox-container {
-            display: flex;
+            display: none;
             flex-direction: column;
             align-items: center;
             margin-bottom: 20px;
@@ -102,6 +102,18 @@
             font-size: 1.1em;
             line-height: 1.6;
         }
+        .question-section {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #fff;
+            color: #333;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 800px;
+        }
+        .question-section p {
+            font-size: 1.2em;
+        }
     </style>
 </head>
 <body>
@@ -122,16 +134,24 @@
                 <button class="button" id="friday-button" onclick="updateProgress(10, 'friday')">🥑 Healthy Friday</button>
             </div>
 
-            <div class="checkbox-container">
-                <label for="nonveg-checkbox">Non-Veg (for days except Monday)</label>
-                <input type="checkbox" id="nonveg-checkbox" onclick="toggleCheckbox('nonveg')">
+            <div class="checkbox-container" id="veg-checkbox-container">
+                <label for="veg-checkbox">🍽️ Veg Option</label>
+                <input type="checkbox" id="veg-checkbox" onclick="updateVegStatus(true)">
             </div>
             
-            <div class="scroll-section">
-                <h2>Why Should We Eat Healthy Food?</h2>
-                <p>Healthy eating helps maintain a healthy weight, reduces the risk of chronic diseases like heart disease, diabetes, and cancer, and promotes overall health and well-being.</p>
-                <h2>Why Should We Not Eat Unhealthy Food?</h2>
-                <p>Unhealthy foods, especially those rich in sugars, fats, and processed ingredients, can lead to weight gain, increase the risk of chronic diseases, and impact your mental well-being.</p>
+            <div class="checkbox-container" id="nonveg-checkbox-container">
+                <label for="nonveg-checkbox">🍗 Non-Veg Option</label>
+                <input type="checkbox" id="nonveg-checkbox" onclick="updateVegStatus(false)">
+            </div>
+
+            <div class="question-section">
+                <h2>Why Should We Eat Healthy Food? 🤔</h2>
+                <p>Healthy eating helps you maintain a healthy weight, boosts your energy levels, improves your mood, and helps prevent diseases. 🍎</p>
+            </div>
+
+            <div class="question-section">
+                <h2>Why Should We Avoid Unhealthy Food? 🚫</h2>
+                <p>Unhealthy foods, especially those high in sugar and fats, can lead to weight gain, heart diseases, and low energy levels. 🍔</p>
             </div>
         </div>
 
@@ -143,20 +163,30 @@
     <script>
         let points = 0;
 
+        // Function to handle the progress
         function updateProgress(pointsAdded, day) {
             if (day === 'monday' && document.getElementById("nonveg-checkbox").checked) {
                 alert('Meat is not allowed on Monday (Meatless Monday)!');
                 return;
             }
-
             points += pointsAdded;
             const progressBar = document.getElementById("progress-bar");
             progressBar.style.width = `${Math.min(points, 100)}%`;
+
+            // Display Veg/Non-Veg options after clicking a button
+            if (day !== 'monday') {
+                document.getElementById("veg-checkbox-container").style.display = "flex";
+                document.getElementById("nonveg-checkbox-container").style.display = "flex";
+            } else {
+                document.getElementById("veg-checkbox-container").style.display = "none";
+                document.getElementById("nonveg-checkbox-container").style.display = "none";
+            }
         }
 
-        function toggleCheckbox(type) {
-            if (type === 'nonveg' && document.getElementById("nonveg-checkbox").checked) {
-                alert('Meat is not allowed on Monday (Meatless Monday)!');
+        // Update the progress based on veg/non-veg selection
+        function updateVegStatus(isVeg) {
+            if (!isVeg && document.getElementById("monday-button").clicked) {
+                alert('Non-Veg is not allowed on Monday!');
             }
         }
     </script>
